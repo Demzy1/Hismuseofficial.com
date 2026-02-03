@@ -1,91 +1,438 @@
+/* ==============================
+   ROOT VARIABLES
+================================ */
 :root {
-  --navy: #0A0F24;
-  --gold: #C8A74E;
-  --white: #FFFFFF;
-  --light: #F5F5F5;
+  --bg-main: #f5f1ec;          /* warm cream */
+  --bg-alt: #ebe5dc;           /* section contrast */
+  --text-main: #2b2622;        /* deep brown */
+  --text-muted: #6f675f;       /* soft muted */
+  --accent: #8b6f4e;           /* earthy brown */
+  --accent-dark: #6f563c;
+  --border-light: rgba(0,0,0,0.08);
+
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-serif: "Playfair Display", serif;
 }
 
-* {
-  margin: 0;
-  padding: 0;
+/* ==============================
+   RESET & BASE
+================================ */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  color: var(--navy);
-  background-color: var(--white);
-  line-height: 1.6;
+html {
+  scroll-behavior: smooth;
 }
 
-/* Navigation */
-nav {
-  position: fixed;
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background: var(--bg-main);
+  line-height: 1.65;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==============================
+   HEADER & NAV
+================================ */
+.site-header {
+  position: sticky;
   top: 0;
-  width: 100%;
-  padding: 1.5rem 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(10, 15, 36, 0.95);
-  color: var(--white);
+  background: var(--bg-main);
+  border-bottom: 1px solid var(--border-light);
   z-index: 1000;
 }
 
-.logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  letter-spacing: 2px;
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  letter-spacing: 0.08em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
 }
 
 .nav-links a {
-  margin-left: 1.5rem;
-  text-decoration: none;
-  color: var(--white);
-  font-weight: 400;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
 }
 
 .nav-links a:hover {
-  color: var(--gold);
+  color: var(--accent);
 }
 
-/* Hero */
+/* ==============================
+   HERO
+================================ */
 .hero {
-  height: 100vh;
-  background: #111;
+  position: relative;
+  min-height: 85vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
 }
 
 .hero-overlay {
-  text-align: center;
-  color: var(--white);
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(245,241,236,0.9),
+    rgba(245,241,236,0.95)
+  );
+  z-index: 1;
 }
 
-.hero-overlay h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 3rem;
-  letter-spacing: 1px;
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 850px;
+  padding: 6rem 2rem;
 }
 
-.hero-overlay p {
-  margin-top: 1rem;
-  font-size: 1.2rem;
-  letter-spacing: 2px;
+.kicker {
   text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
 }
 
-/* Sections */
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.4rem);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  max-width: 620px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.hero-actions {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.hero-notes {
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.7rem;
+}
+
+/* ==============================
+   BUTTONS
+================================ */
+.btn {
+  padding: 0.9rem 1.6rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-dark);
+}
+
+.btn-secondary {
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* Pills */
+.pill {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-light);
+  color: var(--text-muted);
+}
+
+/* ==============================
+   SECTIONS
+================================ */
 .section {
-  padding: 6rem 10%;
+  padding: 6rem 2rem;
 }
 
-.section.light {
-  background-color: var(--light);
+.section-alt {
+  background: var(--bg-alt);
 }
 
-.section h2 {
-  font-family: 'Playfair Display', serif;
+.section-head {
+  max-width: 700px;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
   margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+}
+
+/* ==============================
+   PRODUCTS GRID
+================================ */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.5rem;
+}
+
+.product-card {
+  background: white;
+  border: 1px solid var(--border-light);
+  transition: transform 0.25s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-body {
+  padding: 1.8rem;
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.product-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.product-cta {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ==============================
+   FEATURES
+================================ */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 3rem;
+}
+
+.feature h3 {
+  font-family: var(--font-serif);
+  margin-bottom: 0.6rem;
+}
+
+/* ==============================
+   ABOUT
+================================ */
+.about-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4rem;
+}
+
+.about-title {
+  font-family: var(--font-serif);
+  margin-bottom: 1rem;
+}
+
+.about-list {
+  padding-left: 1.2rem;
+}
+
+.about-list li {
+  margin-bottom: 0.8rem;
+}
+
+/* ==============================
+   CONTACT
+================================ */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 4rem;
+}
+
+.contact-form {
+  background: white;
+  padding: 3rem;
+  border: 1px solid var(--border-light);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.4rem;
+}
+
+input,
+textarea {
+  padding: 0.8rem;
+  border: 1px solid var(--border-light);
+  font-family: var(--font-sans);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.form-note {
+  margin-top: 1.2rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Aside */
+.aside-card {
+  background: white;
+  padding: 2rem;
+  border: 1px solid var(--border-light);
+  margin-bottom: 2rem;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+/* ==============================
+   FOOTER
+================================ */
+.footer {
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--border-light);
+  background: var(--bg-main);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto 1.5rem;
+}
+
+.footer-brand {
+  font-family: var(--font-serif);
+  letter-spacing: 0.08em;
+}
+
+.footer-tag {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.footer-right a {
+  margin-left: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-legal {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* ==============================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .contact-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    display: none;
+  }
 }
